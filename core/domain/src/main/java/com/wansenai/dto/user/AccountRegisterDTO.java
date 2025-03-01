@@ -27,7 +27,7 @@ public class AccountRegisterDTO {
 
     String phoneNumber;
 
-    String sms;
+    String emailCode;
 
     String email;
 }
