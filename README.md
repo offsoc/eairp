@@ -43,15 +43,6 @@ It's completely free, if this project is helpful to you, please click on Star. T
 ## Quick Start
 We provide a more comprehensive Docker deployment method, which can be found in [docker folder](https://github.com/eairps/eairp/blob/master/docker/README.md)
 
-## System screenshot (only part)
-![](images/login-page-en.png)
-![](images/home-page-zh.png)
-![](images/retail-shipment.png)
-![](images/product-add-one.png)
-![](images/product-add-two.png)
-![](images/add-menu-zh.png)
-![](images/role-permission-zh.png)
-
 ## License
 
 Licensed under either of
