@@ -43,15 +43,6 @@
 ## 快速开始
 我们提供了一种更全面的Docker部署方法，可以在[Docker](https://github.com/eairps/eairp/blob/master/docker/README_ZH.md)文件夹中找到
 
-## 系统展示图
-![](images/login-page-zh.png)
-![](images/home-page-zh.png)
-![](images/retail-shipment.png)
-![](images/product-add-one.png)
-![](images/product-add-two.png)
-![](images/add-menu-zh.png)
-![](images/role-permission-zh.png)
-
 ## License
 
 根据以下任一许可证之一，对本项目中的代码和文档进行许可：
