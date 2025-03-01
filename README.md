@@ -41,7 +41,85 @@ It's completely free, if this project is helpful to you, please click on Star. T
 - test password: 123456
 
 ## Quick Start
+
 We provide a more comprehensive Docker deployment method, which can be found in [docker folder](https://github.com/eairps/eairp/blob/master/docker/README.md)
+
+### Prerequisites
+- Docker Engine 20.10+
+- Docker Compose v2.17+
+
+### 1. Docker Compose (Recommended)
+
+**Applicable scenarios**: There is no MySQL/Redis environment locally, and a complete service stack needs to be started quickly.
+
+```bash
+# Clone deployment repository
+git clone https://github.com/eairps/eairp.git
+
+cd eairp
+
+# Start services
+docker compose up -d
+```
+
+### 2. Docker standalone container
+
+**Applicable scenarios**: MySQL/Redis service already exists, and custom database configuration is required.
+
+**Step 1**: Create a Private Network
+
+```console
+docker network create eairp-net
+```
+
+**Step 2**: Start the MySQL container
+
+```console
+docker run -d --name mysql-eairp \
+  --network eairp-net \
+  -p 3306:3306 \
+  -v /path/to/mysql:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=123456 \
+  -e MYSQL_USER=eairp \
+  -e MYSQL_PASSWORD=123456 \
+  mysql:8.3 \
+  --character-set-server=utf8mb4 \
+  --collation-server=utf8mb4_bin
+```
+
+**Step 3**: Start the Redis container
+
+```console
+docker run -d --name redis-eairp \
+  --network eairp-net \
+  -p 6379:6379 \
+  -v /path/to/redis/data:/data \
+  redis:7.0 \
+  redis-server --requirepass 123456
+```
+
+**Step 4**: Start the Eairp container
+
+Configuration parameters:
+|  Environment variables   | Explanation  |  Example Value  |  
+|  ----  | ----  | ----  |
+| SPRING_DATASOURCE_URL  | MySQL connection address | jdbc:mysql://mysql-eairp:3306/eairp |
+| SPRING_REDIS_HOST	  | Redis host address | redis-eairp |
+| API_BASE_URL		  | Front-end API basic path | http://your-domain.com/erp-api |
+
+```console
+docker run -d --name eairp \
+  --network eairp-net \
+  -p 3000:80 \
+  -p 8088:8088 \
+  -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql-eairp:3306/eairp" \
+  -e SPRING_DATASOURCE_USERNAME=eairp \
+  -e SPRING_DATASOURCE_PASSWORD=123456 \
+  -e SPRING_REDIS_HOST=redis-eairp \
+  -e SPRING_REDIS_PASSWORD=123456 \
+  wansenai/eairp:latest
+```
+
 
 ## License
 
