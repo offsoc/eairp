@@ -26,7 +26,6 @@
 </div>
 <br />
 
-## Project
 [英语](README.md) | [简体中文](./README-zh_CN.md)
 
 ## 浏览器支持
