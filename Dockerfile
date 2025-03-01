@@ -1,5 +1,5 @@
 # First stage: Build the web application
-FROM node:23-alpine AS build-web
+FROM node:18.18.0 as build-web
 WORKDIR /app/web
 
 COPY ./web/package.json ./web/pnpm-lock.yaml ./
@@ -12,7 +12,7 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm run build:docker
 
 # Second stage: Build the API application
-FROM maven:3.9.9-eclipse-temurin-21-alpine AS build-api
+FROM maven:3.9-sapmachine-22 AS build-api
 WORKDIR /build
 
 # Copy the root pom.xml and download dependencies
@@ -42,7 +42,7 @@ FROM debian:bullseye-slim AS openjdk
 RUN apt-get update && apt-get install -y openjdk-21-jdk && apt-get clean
 
 # Fourth stage: Combine Nginx and OpenJDK
-FROM nginx:1.27 AS final
+FROM nginx:1.23.4 AS final
 WORKDIR /application
 
 # Install OpenJDK manually
