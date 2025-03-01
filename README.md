@@ -120,7 +120,6 @@ docker run -d --name eairp \
   wansenai/eairp:latest
 ```
 
-
 ## License
 
 Licensed under either of
