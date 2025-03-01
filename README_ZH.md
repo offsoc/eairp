@@ -43,6 +43,82 @@
 ## 快速开始
 我们提供了一种更全面的Docker部署方法，可以在[Docker](https://github.com/eairps/eairp/blob/master/docker/README_ZH.md)文件夹中找到
 
+### 先决条件
+- Docker Engine 20.10+
+- Docker Compose v2.17+
+
+### 1. Docker Compose（推荐）
+
+**适用场景**: 本地没有MySQL/Redis环境，需要快速启动完整的服务栈。
+
+```bash
+# Clone deployment repository
+git clone https://github.com/eairps/eairp.git
+
+cd eairp
+
+# Start services
+docker compose up -d
+```
+
+### 2. Docker 独立容器
+
+**适用场景**: MySQL/Redis服务已经存在，需要自定义数据库配置。
+
+**步骤 1**: 创建专用网络
+
+```console
+docker network create eairp-net
+```
+
+**步骤 2**: 启动 MySQL 容器
+
+```console
+docker run -d --name mysql-eairp \
+  --network eairp-net \
+  -p 3306:3306 \
+  -v /path/to/mysql:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=123456 \
+  -e MYSQL_USER=eairp \
+  -e MYSQL_PASSWORD=123456 \
+  mysql:8.3 \
+  --character-set-server=utf8mb4 \
+  --collation-server=utf8mb4_bin
+```
+
+**步骤 3**: 启动 Redis 容器
+
+```console
+docker run -d --name redis-eairp \
+  --network eairp-net \
+  -p 6379:6379 \
+  -v /path/to/redis/data:/data \
+  redis:7.0 \
+  redis-server --requirepass 123456
+```
+
+**步骤 4**: 启动 Eairp 容器
+
+配置参数：
+|  环境变量	   | 说明  |  示例值  |  
+|  ----  | ----  | ----  |
+| SPRING_DATASOURCE_URL  | MySQL connection address | jdbc:mysql://mysql-eairp:3306/eairp |
+| SPRING_REDIS_HOST	  | Redis host address | redis-eairp |
+| API_BASE_URL		  | Front-end API basic path | http://your-domain.com/erp-api |
+
+```console
+docker run -d --name eairp \
+  --network eairp-net \
+  -p 3000:80 \
+  -p 8088:8088 \
+  -e SPRING_DATASOURCE_URL="jdbc:mysql://mysql-eairp:3306/eairp" \
+  -e SPRING_DATASOURCE_USERNAME=eairp \
+  -e SPRING_DATASOURCE_PASSWORD=123456 \
+  -e SPRING_REDIS_HOST=redis-eairp \
+  -e SPRING_REDIS_PASSWORD=123456 \
+  wansenai/eairp:latest
+```
+
 ## License
 
 根据以下任一许可证之一，对本项目中的代码和文档进行许可：
