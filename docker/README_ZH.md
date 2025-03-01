@@ -160,15 +160,13 @@ docker run --net=eairp-nw -d --name eairp -p 8088:8088 -p 3000:80 -v /usr/local/
 
 另一种解决方案是使用我们提供的Docker Compose文件。
 
-首先，您需要下载[eairp源代码](https://github.com/eairps/eairp/releases)到您的本地计算机，然后您必须从[docker](https://github.com/eairps/eairp/tree/master/docker)文件夹下载5个文件，它们是：
+首先，您需要下载[eairp源代码](https://github.com/eairps/eairp/releases)到您的本地计算机，它们是：
 
 -	`.env`
 -	`Dockerfile`
 -	`docker-compose.yaml`
 -	`start.sh`
 -	`mysql-scripts/eairp.sql`
-
-然后将这四个文件和 `mysql-scripts` 文件夹复制到Eairp源代码目录结构中，注意 `mysql-scscripts` 是一个文件夹。您需要复制整个文件夹，而不仅仅是其中的sql文件。
 
 完整的目录结构如下：
 
