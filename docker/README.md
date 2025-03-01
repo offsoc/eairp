@@ -164,15 +164,13 @@ If you want to deploy on your server, please modify the value of the `API_BASE_U
 
 Another solution is to use the Docker Compose files we provide.
 
-First you need to download the [eairp source code](https://github.com/wansenai/eairp/releases) to your local machine, then you must download 5 files from [eairp-docker](https://github.com/wansenai/eairp-docker) repository, they are:
+First you need to download the [eairp source code](https://github.com/wansenai/eairp/releases) to your local machine.
 
 -	`.env`
 -	`Dockerfile`
 -	`docker-compose.yaml`
 -	`start.sh`
 -	`mysql-scripts/eairp.sql`
-
-Then copy these four files and the `mysql-scripts` folder to the Eairp source code directory structure, Note that `mysql-scripts` is a folder. You need to copy the folder in its entirety instead of the sql file inside.
 
 The complete directory structure is as follows:
 
