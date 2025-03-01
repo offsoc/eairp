@@ -4,6 +4,7 @@ networks:
 services:
   eairp:
     image: eairp 
+    container_name: eairp
     build:
       context: .
       dockerfile: Dockerfile 
