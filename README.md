@@ -120,6 +120,17 @@ docker run -d --name eairp \
   wansenai/eairp:latest
 ```
 
+### Deployment FAQ
+
+1. **eairp container /start.sh: no such file or directory**
+
+This issue is commonly caused by Windows' handling of line endings in text files, which can affect scripts like `start.sh` used in Docker containers.
+
+Before cloning the repository, configure Git to prevent automatic conversion of line endings. 
+```bash
+git config --global core.autocrlf false
+```
+
 ## License
 
 Licensed under either of
