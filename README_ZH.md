@@ -119,16 +119,6 @@ docker run -d --name eairp \
   wansenai/eairp:latest
 ```
 
-### 部署常见问题
-
-1. **eairp container /start.sh: no such file or directory**
-
-此问题通常是由 `Windows` 对文本文件中行尾的处理引起的，这可能会影响容器中使用 `start.sh` 脚本。
-在克隆存储库之前，请配置 Git 以防止自动转换行尾。
-```bash
-git config --global core.autocrlf false
-```
-
 ## License
 
 根据以下任一许可证之一，对本项目中的代码和文档进行许可：
