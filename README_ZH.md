@@ -128,7 +128,7 @@ docker run -d --name eairp \
 根据您的选择。
 
 ## 社区
-<img src="images/wechat-group-20250318.jpg" alt="WeChat Group" width="300" />
+<img src="images/wechat-group-20250407.jpg" alt="WeChat Group" width="300" />
 
 ## 贡献
 我们欢迎每一位贡献者，无论是在代码还是文档方面。
