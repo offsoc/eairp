@@ -7,6 +7,8 @@ services:
     container_name: eairp
     build:
       context: .
+      args:
+        API_BASE_URL: "${API_BASE_URL}"
       dockerfile: Dockerfile 
     ports:
       - "3000:80"
